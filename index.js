@@ -2,39 +2,16 @@ import { createLibp2p } from "libp2p";
 import { tcp } from "@libp2p/tcp";
 import { noise } from "@chainsafe/libp2p-noise";
 import { mplex } from "@libp2p/mplex";
-import { createFromJSON, createEd25519PeerId } from "@libp2p/peer-id-factory";
-import { peerIdFromString } from "@libp2p/peer-id";
+import { createEd25519PeerId } from "@libp2p/peer-id-factory";
+import { ping } from "@libp2p/ping";
 import { config } from "dotenv";
 import cron from "node-cron";
-import fs from "fs";
 import fetch from "isomorphic-fetch";
 
 config();
 
-const peerIdJson = fs.existsSync(process.cwd() + "/peer-id.json")
-  ? // Remove the quotes from the JSON string
-    fs
-      .readFileSync(process.cwd() + "/peer-id.json")
-      .toString()
-      .replace(/"/g, "")
-  : null;
-
 const main = async () => {
-  let peerId;
-  if (!peerIdJson) {
-    peerId = await createEd25519PeerId();
-
-    fs.writeFileSync(
-      process.cwd() + "/peer-id.json",
-      JSON.stringify({
-        id: peerId.toBytes(),
-        privateKey: peerId.privateKey,
-        publicKey: peerId.publicKey,
-      })
-    );
-  } else {
-    peerId = createFromJSON(peerIdJson);
-  }
+  const peerId = await createEd25519PeerId();
 
   const node = await createLibp2p({
     peerId,
@@ -44,6 +21,11 @@ const main = async () => {
     transports: [tcp()],
     connectionEncryption: [noise()],
     streamMuxers: [mplex()],
+    services: {
+      ping: ping({
+        protocolPrefix: "rebackk",
+      }),
+    },
   });
 
   await node.start();
@@ -60,7 +42,7 @@ const main = async () => {
       console.log(`Pinging ${peers.length} peers`);
       for (const peer of peers) {
         try {
-          await node.ping(peer);
+          await node.services.ping(peer.id);
           console.log(`Ping sent to ${peer.id.toString()}`);
         } catch (err) {
           console.error(`Ping failed to ${peer.id.toString()}`);
