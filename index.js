@@ -60,30 +60,6 @@ const main = async () => {
   node.addEventListener("peer:disconnect", ({ peerId }) => {
     console.log(`Disconnected from ${peerId.toB58String()}`);
   });
-
-  // Handle messages
-  node.handle("/ping/1.0.0", async ({ stream }) => {
-    console.log("Received ping");
-    stream.write({ type: "PONG" });
-  });
-
-  // Handle messages
-  node.handle("/pong/1.0.0", async ({ stream }) => {
-    console.log("Received pong");
-  });
-
-  // Handle messages
-
-  node.handle("/file/1.0.0", async ({ stream }) => {
-    console.log("Received file");
-    stream.write({ type: "FILE" });
-  });
-
-  // Handle messages
-  node.handle("/file/1.0.0", async ({ stream }) => {
-    console.log("Received file");
-    stream.write({ type: "FILE" });
-  });
 };
 
 // Ping bootnode every 30 seconds
