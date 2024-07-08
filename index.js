@@ -62,6 +62,21 @@ const main = async () => {
       });
     })
     .start();
+
+  // Schedule a task to ping the peers every 30 seconds
+  cron
+    .schedule("*/30 * * * * *", async () => {
+      const peers = node.getPeers();
+      peers.forEach(async (peer) => {
+        try {
+          await node.services.ping.ping(peer);
+          console.log(`Ping to ${peer.id.toString()} successful`);
+        } catch (err) {
+          console.error(`Ping to ${peer.id.toString()} failed`);
+        }
+      });
+    })
+    .start();
 };
 
 // Ping bootnode every 30 seconds
