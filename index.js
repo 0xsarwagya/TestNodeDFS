@@ -45,6 +45,17 @@ const main = async () => {
   node.getMultiaddrs().forEach((addr) => {
     console.log(addr.toString());
   });
+
+  // Schedule a task to print out the peers every 10 seconds
+  cron
+    .schedule("*/10 * * * * *", async () => {
+      const peers = node.getPeers();
+      console.log(`Connected to ${peers.size} peers`);
+      peers.forEach((peer) => {
+        console.log(peer.id.toB58String());
+      });
+    })
+    .start();
 };
 
 // Ping bootnode every 30 seconds
