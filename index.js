@@ -45,32 +45,6 @@ const main = async () => {
   node.getMultiaddrs().forEach((addr) => {
     console.log(addr.toString());
   });
-
-  // Send A PING message every 1 minute
-  cron
-    .schedule("*/60 * * * * *", async () => {
-      const peers = await node.peerStore.all();
-      console.log(`Pinging ${peers.length} peers`);
-      for (const peer of peers) {
-        try {
-          await node.services.ping(peer.id);
-          console.log(`Ping sent to ${peer.id.toString()}`);
-        } catch (err) {
-          console.error(`Ping failed to ${peer.id.toString()}`);
-        }
-      }
-    })
-    .start();
-
-  // Handle incoming connections
-  node.addEventListener("peer:connect", ({ peerId }) => {
-    console.log(`Connected to ${peerId.toB58String()}`);
-  });
-
-  // Handle incoming connections
-  node.addEventListener("peer:disconnect", ({ peerId }) => {
-    console.log(`Disconnected from ${peerId.toB58String()}`);
-  });
 };
 
 // Ping bootnode every 30 seconds
