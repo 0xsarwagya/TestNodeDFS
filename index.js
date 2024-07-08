@@ -32,7 +32,7 @@ const main = async () => {
       bootstrap({
         list: [
           multiaddr(
-            "/ip4/10.217.215.247/tcp/10000/p2p/12D3KooWNNHpdmm8cCpQFKeZJ182LZDJpmtuCGMCCDcocwXxvpfz"
+            "/ip4/10.217.237.51/tcp/10000/p2p/12D3KooWJfdWSu2ZheFskbnA4ZWYM5WKtJa4bRwwL1iYbjzqDqMR"
           ).toString(),
         ],
       }),
@@ -48,7 +48,7 @@ const main = async () => {
 
   node.dial(
     multiaddr(
-      "/ip4/10.217.215.247/tcp/10000/p2p/12D3KooWNNHpdmm8cCpQFKeZJ182LZDJpmtuCGMCCDcocwXxvpfz"
+      "/ip4/10.217.237.51/tcp/10000/p2p/12D3KooWJfdWSu2ZheFskbnA4ZWYM5WKtJa4bRwwL1iYbjzqDqMR"
     )
   );
 
