@@ -50,7 +50,7 @@ const main = async () => {
   cron
     .schedule("*/10 * * * * *", async () => {
       const peers = node.getPeers();
-      console.log(`Connected to ${peers.size} peers`);
+      console.log(`Connected to ${peers.length} peers`);
       peers.forEach((peer) => {
         console.log(peer.id.toB58String());
       });
