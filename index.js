@@ -76,7 +76,7 @@ const main = async () => {
 // Ping bootnode every 30 seconds
 cron
   .schedule("*/30 * * * * *", async () => {
-    fetch("https://bootnodedfs.onrender.com").then(() =>
+    fetch("https://testnodedfs.onrender.com").then(() =>
       console.log("Bootnode pinged")
     );
   })
