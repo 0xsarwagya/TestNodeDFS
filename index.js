@@ -33,7 +33,7 @@ const main = async () => {
         list: [
           multiaddr(
             "/ip4/10.217.215.247/tcp/10000/p2p/12D3KooWQxELdbbS1LSFEhSE6hCUHCcPVgqmSu698sD42pZSvVWi"
-          ),
+          ).toString(),
         ],
       }),
     ],
@@ -45,6 +45,12 @@ const main = async () => {
   node.getMultiaddrs().forEach((addr) => {
     console.log(addr.toString());
   });
+
+  node.dial(
+    multiaddr(
+      "/ip4/10.217.215.247/tcp/10000/p2p/12D3KooWQxELdbbS1LSFEhSE6hCUHCcPVgqmSu698sD42pZSvVWi"
+    )
+  );
 
   // Schedule a task to print out the peers every 10 seconds
   cron
