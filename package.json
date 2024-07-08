@@ -15,11 +15,13 @@
   },
   "dependencies": {
     "@chainsafe/libp2p-noise": "^15.1.0",
+    "@libp2p/bootstrap": "^10.1.1",
     "@libp2p/mplex": "^10.1.1",
     "@libp2p/peer-id": "^4.2.0",
     "@libp2p/peer-id-factory": "^4.2.0",
     "@libp2p/ping": "^1.1.1",
     "@libp2p/tcp": "^9.1.1",
+    "@multiformats/multiaddr": "^12.3.0",
     "dotenv": "^16.4.5",
     "isomorphic-fetch": "^3.0.0",
     "libp2p": "^1.8.0",

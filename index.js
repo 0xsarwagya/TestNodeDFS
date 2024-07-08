@@ -7,6 +7,8 @@ import { ping } from "@libp2p/ping";
 import { config } from "dotenv";
 import cron from "node-cron";
 import fetch from "isomorphic-fetch";
+import { bootstrap } from "@libp2p/bootstrap";
+import { multiaddr } from "@multiformats/multiaddr";
 
 config();
 
@@ -26,6 +28,15 @@ const main = async () => {
         protocolPrefix: "rebackk",
       }),
     },
+    peerDiscovery: [
+      bootstrap({
+        list: [
+          multiaddr(
+            "/ip4/10.217.215.247/tcp/10000/p2p/12D3KooWQxELdbbS1LSFEhSE6hCUHCcPVgqmSu698sD42pZSvVWi"
+          ),
+        ],
+      }),
+    ],
   });
 
   await node.start();

@@ -11,6 +11,9 @@ importers:
       '@chainsafe/libp2p-noise':
         specifier: ^15.1.0
         version: 15.1.0
+      '@libp2p/bootstrap':
+        specifier: ^10.1.1
+        version: 10.1.1
       '@libp2p/mplex':
         specifier: ^10.1.1
         version: 10.1.1
@@ -26,6 +29,9 @@ importers:
       '@libp2p/tcp':
         specifier: ^9.1.1
         version: 9.1.1
+      '@multiformats/multiaddr':
+        specifier: ^12.3.0
+        version: 12.3.0
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -59,6 +65,9 @@ packages:
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
+
+  '@libp2p/bootstrap@10.1.1':
+    resolution: {integrity: sha512-pm7LyIQnKjGjmLq89IvwRWJIkB90bUspVl3WMTq7boPeZ3Keo+RlNFSJHL5YtDZa/Jvu/iQR+SVxSmjrKdzn8w==}
 
   '@libp2p/crypto@4.1.5':
     resolution: {integrity: sha512-iQyFljvVza7npzrJNjOCqP1DlvDcGyOxCjlzU0gCLb4Jt0ZyTQDosk3wV7r3hAqCCeoBpm/CB5viJGixhkKgIQ==}
@@ -421,6 +430,13 @@ snapshots:
       '@chainsafe/is-ip': 2.0.2
 
   '@leichtgewicht/ip-codec@2.0.5': {}
+
+  '@libp2p/bootstrap@10.1.1':
+    dependencies:
+      '@libp2p/interface': 1.6.0
+      '@libp2p/peer-id': 4.2.0
+      '@multiformats/mafmt': 12.1.6
+      '@multiformats/multiaddr': 12.3.0
 
   '@libp2p/crypto@4.1.5':
     dependencies:
